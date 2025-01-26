@@ -1,3 +1,4 @@
+Refer to my paper https://www.tandfonline.com/doi/full/10.1080/27684830.2024.2401324
 
 What Are Fractals?
 
