@@ -1,84 +1,94 @@
-Refer to my paper https://www.tandfonline.com/doi/full/10.1080/27684830.2024.2401324
+# Fractal Analysis and Outlier Detection
 
-What Are Fractals?
+Advanced pattern analysis using fractal mathematics for time series data and anomaly detection.
 
-A fractal is a geometric shape or pattern that can be split into smaller parts, each of which is a reduced-scale replica of the whole. This property is known as self-similarity. For instance:
+## Overview
 
-A tree: The large branches of a tree resemble the entire tree, and smaller branches mirror the same structure.
+This project implements fractal-based analysis techniques for:
+- Pattern recognition in time series data
+- Outlier and anomaly detection
+- Complex system analysis
 
-A coastline: Zooming in on a coastline reveals a pattern of jagged edges that looks similar no matter the scale.
+## Understanding Fractals
 
-Snowflakes: The repeating symmetry of snowflakes creates intricate fractal designs.
+Fractals are geometric patterns exhibiting self-similarity at different scales. Examples:
+- Tree branching structures
+- Coastline patterns
+- Snowflake geometries
 
-Fractals in Real Life
+### Real-World Applications
 
-Fractals are not just abstract math; they appear naturally and are used in various fields to solve real-world problems. Here are some compelling examples:
+1. **Natural Systems**
+   - Biological structures (lungs, blood vessels)
+   - Geological formations
+   - River networks
 
-1. Nature’s Designs
+2. **Technology**
+   - Computer graphics terrain generation
+   - Network traffic analysis
+   - Financial market modeling
 
-Nature’s fractals optimize efficiency and beauty. Think of river networks, mountain ranges, and even blood vessels—all are fractal-like structures. For example, your lungs have branching airways that maximize surface area for oxygen exchange, following fractal principles.
+3. **Medical Analysis**
+   - Brain structure analysis
+   - Heart rate variability
+   - DNA pattern recognition
 
-2. Computer Graphics
+## Implementation Details
 
-Ever wondered how movie studios create realistic landscapes in animated films? Fractals are behind the scenes. They simulate natural terrains like mountains, clouds, and forests by using algorithms that mimic fractal patterns.
+### Core Components
 
-3. Medicine
+1. **Fractal Generation**
+   - Julia sets implementation
+   - AntiFractal algorithms
+   - Parameter control (α, scaling factors)
 
-Fractal analysis is used to study biological structures like the human brain, DNA, and heartbeats. For instance, a healthy heartbeat has fractal-like variability, while certain diseases (e.g., arrhythmia) disrupt this pattern.
+2. **Time Series Analysis**
+   - 1D series extraction
+   - Pattern recognition
+   - Self-similarity measurement
 
-4. Finance
+3. **Outlier Detection System**
+   ```python
+   def analyze_timeseries(x: np.ndarray) -> Tuple[float, float]:
+       # Compute fractal metrics
+       D = compute_fractal_dimension(x)
+       H = compute_hurst_exponent(x)
+       return D, H
+   ```
 
-The chaotic behavior of stock prices often resembles fractals. Traders and analysts use fractal geometry to model market fluctuations and predict trends.
+### Key Metrics
 
-5. Telecommunications
+1. **Hurst Exponent (H)**
+   - Measures time series persistence
+   - Range: 0-1
+   - H > 0.5: Trending behavior
+   - H < 0.5: Mean-reverting behavior
 
-Internet traffic and wireless networks exhibit fractal properties. Engineers study these patterns to optimize data flow and prevent network congestion.
+2. **Fractal Dimension (D)**
+   - Quantifies pattern complexity
+   - Relationship: D = 2 - H
+   - Higher D indicates more complexity
 
-What Is the Code Doing?
+## Detection Methodology
 
-The Python code provided in this article generates fractals and uses them to analyze patterns in data. Here’s a breakdown of what’s happening:
+### Process Flow
+1. Window Segmentation
+2. Metric Computation
+3. Anomaly Detection
+4. Result Aggregation
 
-Fractal Generation:
-The code uses complex mathematical formulas to generate fractal images like Julia sets and AntiFractals. These are visual representations of self-similar patterns that depend on input parameters like α (alpha), scaling factors, and iteration steps.
+### Detection Algorithm
+```python
+def detect_outliers(time_series, window_size=100):
+    segments = segment_timeseries(time_series)
+    metrics = compute_segment_metrics(segments)
+    return identify_anomalies(metrics)
+```
 
-For example:
+## References
 
-Julia sets are formed by iteratively applying a function to complex numbers and coloring each point based on how quickly it “escapes” a threshold.
+- Paper Link: [Fractal Analysis for Pattern Recognition](https://www.tandfonline.com/doi/full/10.1080/27684830.2024.2401324)
 
-AntiFractals involve a similar process but with variations in the iterative function.
+## License
 
-The result? Stunning, intricate images that reveal fractal structures at every scale.
-
-Extracting Patterns:
-From the generated fractal images, the code can extract 1D time series by taking rows or columns of pixel values. These time series inherit the fractal properties of the image, making them ideal for studying real-world phenomena.
-
-Outlier Detection:
-The code uses two key mathematical tools—the Hurst exponent and the Fractal Dimension—to analyze time series and detect anomalies.
-
-Hurst Exponent: Measures the persistence or randomness of a time series. Persistent behavior (e.g., trends) results in a high Hurst exponent, while random or noisy behavior leads to a low value.
-
-Fractal Dimension: Quantifies the complexity of the series. Abrupt changes (like anomalies) often increase the fractal dimension.
-
-How Fractals Help with Outlier Detection
-
-An outlier is a data point that deviates significantly from the rest of the series. Outliers often disrupt the self-similarity and scaling behavior of a time series. By measuring the Hurst exponent and fractal dimension over sliding windows of the series, we can detect anomalies.
-
-The Process:
-
-Divide the Time Series: Split the series into overlapping windows of fixed size (e.g., 100 points).
-
-Compute Metrics:
-
-Calculate the Hurst exponent and fractal dimension for each window.
-
-Identify windows where these metrics deviate significantly from the average.
-
-Flag Outliers: Mark windows as anomalies if the deviation exceeds a threshold (e.g., 2 standard deviations).
-
-Real-Life Examples of Fractal-Based Outlier Detection:
-
-Finance: Detecting unusual stock market events like crashes or spikes.
-
-Healthcare: Identifying irregular heartbeats that signal medical conditions.
-
-Cybersecurity: Spotting abnormal network traffic patterns that may indicate cyberattacks.
+MIT License
